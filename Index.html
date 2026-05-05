@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Overview - Expat Capital Partners</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0D1F40; --blue:#2563EB; --blue2:#1d4ed8;
+  --blight:#EFF4FF; --white:#fff; --bg:#F7F9FF;
+  --border:#D1D9F0; --text:#0F172A; --muted:#64748B;
+  --r:8px; --rl:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+.header{background:var(--navy);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(13,31,64,.2);}
+.header img{height:30px;filter:brightness(0) invert(1);}
+.hlabel{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.08em;text-transform:uppercase;}
+
+.prog-wrap{background:var(--white);border-bottom:1px solid var(--border);padding:13px 24px 10px;}
+.prog-track{display:flex;gap:4px;margin-bottom:8px;}
+.prog-seg{flex:1;height:3px;border-radius:2px;background:var(--border);transition:background .3s;}
+.prog-seg.on{background:var(--blue);}
+.prog-meta{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);}
+
+.main{max-width:720px;margin:0 auto;padding:36px 24px 110px;}
+.stitle{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:var(--navy);margin-bottom:4px;}
+.ssub{font-size:14px;color:var(--muted);margin-bottom:28px;}
+
+.sec{border-left:3px solid var(--blue);padding-left:12px;margin:24px 0 18px;}
+.sec h3{font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.07em;}
+
+.fg{margin-bottom:16px;}
+.fl{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px;}
+.req{color:var(--blue);}
+.opt{font-weight:400;color:var(--muted);font-size:12px;}
+
+input,select,textarea{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:var(--white);outline:none;transition:border-color .18s;appearance:none;}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);}
+select{background-image:url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%2364748B' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px;cursor:pointer;}
+textarea{min-height:76px;resize:vertical;}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;}
+@media(max-width:580px){.g2{grid-template-columns:1fr;}}
+
+.pills{display:flex;flex-wrap:wrap;gap:8px;}
+.pill{padding:8px 18px;border-radius:30px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:var(--white);color:var(--text);cursor:pointer;transition:all .18s;font-family:'DM Sans',sans-serif;}
+.pill.on{border-color:var(--blue);background:var(--blue);color:var(--white);}
+.pill:hover:not(.on){border-color:#94b4f5;}
+
+.info{padding:11px 15px;background:var(--blight);border-radius:var(--r);font-size:13px;color:#1e40af;font-weight:500;margin-bottom:16px;line-height:1.5;}
+
+.ccard{border:1px solid var(--border);border-radius:var(--rl);padding:16px;margin-bottom:12px;position:relative;background:var(--white);}
+.ctitle{font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px;}
+.rmbtn{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:15px;line-height:1;padding:2px 6px;border-radius:4px;font-family:sans-serif;}
+.rmbtn:hover{color:#DC2626;background:#fef2f2;}
+.addbtn{width:100%;padding:10px;border:1.5px dashed var(--blue);border-radius:var(--r);background:none;color:var(--blue);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .15s;margin-top:4px;}
+.addbtn:hover{background:var(--blight);}
+
+.rv-sec{margin-bottom:18px;}
+.rv-hd{background:var(--navy);color:var(--white);padding:8px 14px;border-radius:var(--r) var(--r) 0 0;font-size:13px;font-weight:600;}
+.rv-body{border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);overflow:hidden;}
+.rv-row{display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid var(--border);font-size:13px;}
+.rv-row:last-child{border-bottom:none;}
+.rv-k{color:var(--muted);flex:1;}
+.rv-v{color:var(--text);font-weight:500;flex:1;text-align:right;}
+
+.privacy{font-size:12px;color:var(--muted);background:var(--blight);padding:14px 16px;border-radius:var(--r);line-height:1.65;margin-top:20px;}
+
+.nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);padding:13px 24px;display:flex;justify-content:space-between;align-items:center;z-index:200;}
+.bbk{padding:10px 22px;border:1.5px solid var(--border);border-radius:var(--r);background:var(--white);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;}
+.bbk:hover{background:var(--bg);}
+.bfw{padding:10px 26px;border:none;border-radius:var(--r);background:var(--navy);color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;}
+.bfw:hover{background:#162e5a;}
+.bsb{padding:10px 26px;border:none;border-radius:var(--r);background:var(--blue);color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;}
+.bsb:hover{background:var(--blue2);}
+
+.suc-wrap{display:flex;align-items:center;justify-content:center;min-height:78vh;padding:40px 24px;}
+.suc-card{max-width:460px;width:100%;text-align:center;}
+.suc-icon{width:64px;height:64px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;font-size:28px;color:white;}
+.suc-h{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;color:var(--navy);margin-bottom:12px;}
+.suc-p{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:28px;}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);padding:18px 20px;text-align:left;margin-bottom:22px;}
+.ref-label{font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.07em;}
+.ref-num{font-size:20px;font-weight:700;color:var(--navy);letter-spacing:.1em;}
+.suc-links{font-size:13px;color:var(--muted);line-height:2;}
+.suc-links a{color:var(--blue);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <img src="https://expatcapitalpartners.com/wp-content/uploads/2026/04/ECP-09-scaled.png" alt="ECP"
+    onerror="this.style.display='none';document.getElementById('ecpfb').style.display='block'">
+  <span id="ecpfb" style="display:none;color:white;font-size:17px;font-weight:700;letter-spacing:.12em">ECP</span>
+  <span class="hlabel">Financial Overview Form</span>
+</div>
+
+<div class="prog-wrap" id="pwrap">
+  <div class="prog-track" id="ptrack"></div>
+  <div class="prog-meta"><span id="pstep">Step 1 of 7</span><span id="ppct">14% complete</span></div>
+</div>
+
+<div class="main" id="main"></div>
+
+<div class="nav" id="nav">
+  <button class="bbk" id="bbk" onclick="go(-1)">Back</button>
+  <button class="bfw" id="bfw" onclick="go(1)">Continue</button>
+</div>
+
+<script>
+var step = 1;
+var TOTAL = 7;
+
+var F = {
+  title:'', first:'', mid:'', last:'',
+  dob:'', gender:'', nation:'', visa:'',
+  marital:'', ni:'', deps:'0',
+  addr:'', post:'', moved:'',
+  paddr:'', ppost:'',
+  resStatus:'', mobile:'', email:'',
+
+  emp:'',
+  empName:'', jobTitle:'', salary:'', comm:'', bon1:'', bon2:'', empPeriod:'',
+  bizType:'', prof1:'', prof2:'', acct:'',
+  coName:'', share:'', dirSal:'', div1:'', div2:'', coPro1:'', coPro2:'',
+  dayRate:'', conLen:'', industry:'', yrsContracting:'',
+
+  deposit:'', budget:'',
+  cashDep:'', stocksDep:'', giftDep:'', eqDep:'',
+  foreignDep:'No', wantFX:'No',
+
+  hasLoans:'No',
+  loans:[],
+
+  hasResMort:'No',
+  rmLender:'', rmAcc:'', rmVal:'', rmOwed:'', rmPay:'', rmTerm:'', rmRate:'',
+  hasOtherMort:'No',
+  omLender:'', omAcc:'', omAddr:'', omVal:'', omRent:'',
+  omOwn:'', omOwed:'', omPay:'', omTerm:'', omRepay:'', omRate:'',
+
+  foundProp:'No',
+  pAddr:'', pPrice:'', pDep:'', pMort:'',
+  pType:'', pTenure:'', pFloor:'', pFloors:'',
+  lTerm:'', sSvc:'', sGrd:'',
+  agent:'', sol:'', bank:''
+};
+
+function gbp(v){ if(!v) return ''; return '\u00a3' + Number(v).toLocaleString('en-GB'); }
+
+// ── Core setters called from inline handlers ──────────────────────────────
+function setF(k,v){ F[k]=v; }
+function setFr(k,v){ F[k]=v; render(); }
+function setPill(k,v){
+  F[k]=v;
+  if(k==='hasLoans' && v==='Yes' && F.loans.length===0){ F.loans.push(newLoan()); }
+  render();
+}
+function setLoan(i,k,v){ F.loans[i][k]=v; }
+function addLoan(){ F.loans.push(newLoan()); render(); }
+function removeLoan(i){ F.loans.splice(i,1); render(); }
+function newLoan(){ return {owner:'',type:'',lender:'',amt:'',pay:'',term:'',repay:'No'}; }
+
+// ── HTML builders ─────────────────────────────────────────────────────────
+function inp(label, key, type, req, ph){
+  type = type || 'text'; ph = ph || '';
+  var r = req ? '<span class="req">*</span>' : '';
+  var ev = 'oninput="setF(\'' + key + '\',this.value)"';
+  return '<div class="fg"><label class="fl">' + label + r + '</label>'
+    + '<input type="' + type + '" value="' + (F[key]||'') + '" placeholder="' + ph + '" ' + ev + '></div>';
+}
+
+function inpR(label, key, type, req, ph){
+  type = type || 'date'; ph = ph || '';
+  var r = req ? '<span class="req">*</span>' : '';
+  var ev = 'onchange="setFr(\'' + key + '\',this.value)"';
+  return '<div class="fg"><label class="fl">' + label + r + '</label>'
+    + '<input type="' + type + '" value="' + (F[key]||'') + '" placeholder="' + ph + '" ' + ev + '></div>';
+}
+
+function sel(label, key, opts, req){
+  var r = req ? '<span class="req">*</span>' : '';
+  var os = opts.map(function(o){
+    return '<option value="' + o + '" ' + (F[key]===o?'selected':'') + '>' + o + '</option>';
+  }).join('');
+  return '<div class="fg"><label class="fl">' + label + r + '</label>'
+    + '<select onchange="setFr(\'' + key + '\',this.value)">'
+    + '<option value="">Select...</option>' + os
+    + '</select></div>';
+}
+
+function radio(label, key, opts, req){
+  var r = req ? '<span class="req">*</span>' : '';
+  var ps = opts.map(function(o){
+    var cls = F[key]===o ? 'pill on' : 'pill';
+    return '<button type="button" class="' + cls + '" onclick="setPill(\'' + key + '\',\'' + o + '\')">' + o + '</button>';
+  }).join('');
+  return '<div class="fg"><label class="fl">' + label + r + '</label><div class="pills">' + ps + '</div></div>';
+}
+
+function ta(label, key, ph){
+  ph = ph || '';
+  return '<div class="fg"><label class="fl">' + label + '</label>'
+    + '<textarea placeholder="' + ph + '" oninput="setF(\'' + key + '\',this.value)">' + (F[key]||'') + '</textarea></div>';
+}
+
+function sec(t){ return '<div class="sec"><h3>' + t + '</h3></div>'; }
+function g2(a,b){ return '<div class="g2">' + a + b + '</div>'; }
+function info(t){ return '<div class="info">' + t + '</div>'; }
+
+// ── Step renderers ────────────────────────────────────────────────────────
+function s1(){
+  var needPrev = false;
+  if(F.moved){
+    var d = new Date(F.moved);
+    var cutoff = new Date();
+    cutoff.setFullYear(cutoff.getFullYear()-3);
+    needPrev = d > cutoff;
+  }
+  var prev = needPrev
+    ? info('We need your previous address as you have been at your current address for less than 3 years')
+      + inp('Previous Full Address','paddr','text',false,'Street, City')
+      + inp('Previous Postcode','ppost')
+    : '';
+  return sec('Personal Information')
+    + g2(sel('Title','title',['Mr','Mrs','Ms','Miss','Dr','Prof'],true), inp('First Name','first','text',true))
+    + g2(inp('Middle Name','mid','text',false,'Optional'), inp('Last Name','last','text',true))
+    + g2(inpR('Date of Birth','dob','date',true), sel('Gender','gender',['Male','Female','Non-binary','Prefer not to say']))
+    + g2(inp('Passport / Nationality','nation','text',false,'e.g. British, UAE'), sel('Visa Status','visa',['British Citizen','Indefinite Leave to Remain','Skilled Worker Visa','Spouse Visa','Student Visa','Other','N/A']))
+    + g2(sel('Marital Status','marital',['Single','Married','Civil Partnership','Divorced','Widowed','Separated']), inp('National Insurance Number','ni','text',false,'AB 12 34 56 C'))
+    + inp('Number of Dependants','deps','number',false,'0')
+    + sec('Contact and Address')
+    + g2(inp('Mobile Number','mobile','tel',true,'+44...'), inp('Email Address','email','email',true))
+    + inp('Current Full Address','addr','text',true,'Street, City')
+    + g2(inp('Postcode','post','text',true), inpR('Date Moved In','moved','date'))
+    + sel('Residential Status','resStatus',['Owner with mortgage','Owner outright','Renting','Living with parents','Other'],true)
+    + prev;
+}
+
+function s2(){
+  var detail = '';
+  if(F.emp==='Employed'){
+    detail = sec('Employment Details')
+      + g2(inp('Employer Name','empName','text',true), inp('Job Title','jobTitle','text',true))
+      + g2(inp('Gross Basic Salary','salary','number',true,'0'), inp('Period of Employment','empPeriod','text',false,'e.g. 3 years 2 months'))
+      + inp('Annual Commission (0 if none)','comm','number',false,'0')
+      + sec('Annual Bonus - Last 2 Years')
+      + g2(inp('Latest Year','bon1','number',false,'0 if none'), inp('Previous Year','bon2','number',false,'0 if none'));
+  } else if(F.emp==='Self-Employed'){
+    detail = sec('Self-Employment Details')
+      + radio('Business Type','bizType',['Sole Trader','Partnership'],true)
+      + sec('Net Profit - Last 2 Years')
+      + g2(inp('Latest Year','prof1','number',true,'0'), inp('Previous Year','prof2','number',true,'0'))
+      + ta('Accountant Details (optional)','acct','Name, firm, contact number');
+  } else if(F.emp==='Company Director'){
+    detail = sec('Company Details')
+      + g2(inp('Company Name','coName','text',true), inp('Shareholding %','share','number',true,'e.g. 50'))
+      + inp('Director Salary (per year)','dirSal','number',true,'0')
+      + sec('Dividends - Last 2 Years')
+      + g2(inp('Latest Year','div1','number',true,'0'), inp('Previous Year','div2','number',true,'0'))
+      + sec('Company Net Profit - Last 2 Years (preferred)')
+      + g2(inp('Latest Year','coPro1','number',false,'0'), inp('Previous Year','coPro2','number',false,'0'));
+  } else if(F.emp==='Contractor'){
+    detail = sec('Contractor Details')
+      + g2(inp('Day Rate','dayRate','number',true,'0'), inp('Contract Length','conLen','text',true,'e.g. 6 months'))
+      + g2(inp('Industry','industry','text',true,'e.g. IT, Finance'), inp('Years Contracting','yrsContracting','number',true,'0'));
+  } else if(F.emp==='Retired'){
+    detail = info('Please detail your pension and any other retirement income below.')
+      + inp('Annual Pension Income','salary','number',false,'0')
+      + inp('Other Retirement Income (e.g. rental, investments)','acct');
+  }
+  return sec('Employment Status')
+    + radio('What is your current employment status?','emp',['Employed','Self-Employed','Company Director','Contractor','Retired','Other'],true)
+    + detail;
+}
+
+function s3(){
+  var fxq = F.foreignDep==='Yes'
+    ? radio('Would you like to speak to a Foreign Currency expert about transferring funds to the UK?','wantFX',['Yes','No'])
+    : '';
+  return sec('Property Budget')
+    + g2(inp('Deposit Amount','deposit','number',true,'0'), inp('Estimated Property Value / Budget','budget','number',true,'0'))
+    + sec('Source of Deposit Funds')
+    + '<p style="font-size:13px;color:var(--muted);margin:-8px 0 16px">Enter amounts for each applicable source. Leave blank if not applicable.</p>'
+    + g2(inp('Cash Savings','cashDep','number',false,'0'), inp('Stocks and Shares','stocksDep','number',false,'0'))
+    + g2(inp('Gift','giftDep','number',false,'0'), inp('Equity from existing property','eqDep','number',false,'0'))
+    + sec('Foreign Currency')
+    + radio('Is any deposit held outside the UK or in a foreign currency?','foreignDep',['Yes','No'],true)
+    + fxq;
+}
+
+function loanCard(c, i){
+  var types = ['Personal Loan','Car Finance','Credit Card','Student Loan','Store Card','Other'];
+  var rmBtn = F.loans.length > 1
+    ? '<button class="rmbtn" onclick="removeLoan(' + i + ')">X</button>'
+    : '';
+  var typeOpts = types.map(function(t){
+    return '<option value="' + t + '" ' + (c.type===t?'selected':'') + '>' + t + '</option>';
+  }).join('');
+  var repayYes = c.repay==='Yes' ? 'pill on' : 'pill';
+  var repayNo  = c.repay==='No'  ? 'pill on' : 'pill';
+  return '<div class="ccard">'
+    + '<div class="ctitle">Commitment ' + (i+1) + '</div>' + rmBtn
+    + '<div class="g2">'
+    + '<div class="fg"><label class="fl">Owner</label>'
+    + '<select onchange="setLoan(' + i + ',\'owner\',this.value)">'
+    + '<option value="">Select...</option>'
+    + '<option ' + (c.owner==='Applicant 1'?'selected':'') + '>Applicant 1</option>'
+    + '<option ' + (c.owner==='Joint'?'selected':'') + '>Joint</option>'
+    + '</select></div>'
+    + '<div class="fg"><label class="fl">Type of Loan</label>'
+    + '<select onchange="setLoan(' + i + ',\'type\',this.value)">'
+    + '<option value="">Select...</option>' + typeOpts
+    + '</select></div>'
+    + '</div>'
+    + '<div class="g2">'
+    + '<div class="fg"><label class="fl">Lender</label><input type="text" value="' + (c.lender||'') + '" oninput="setLoan(' + i + ',\'lender\',this.value)"></div>'
+    + '<div class="fg"><label class="fl">Amount Outstanding / Credit Limit</label><input type="number" value="' + (c.amt||'') + '" placeholder="0" oninput="setLoan(' + i + ',\'amt\',this.value)"></div>'
+    + '</div>'
+    + '<div class="g2">'
+    + '<div class="fg"><label class="fl">Monthly Payment</label><input type="number" value="' + (c.pay||'') + '" placeholder="0" oninput="setLoan(' + i + ',\'pay\',this.value)"></div>'
+    + '<div class="fg"><label class="fl">Term Remaining</label><input type="text" value="' + (c.term||'') + '" placeholder="e.g. 24 months" oninput="setLoan(' + i + ',\'term\',this.value)"></div>'
+    + '</div>'
+    + '<div class="fg"><label class="fl">To be repaid before completion?</label><div class="pills">'
+    + '<button type="button" class="' + repayYes + '" onclick="setLoan(' + i + ',\'repay\',\'Yes\')">Yes</button>'
+    + '<button type="button" class="' + repayNo  + '" onclick="setLoan(' + i + ',\'repay\',\'No\')">No</button>'
+    + '</div></div>'
+    + '</div>';
+}
+
+function s4(){
+  var cards = '';
+  if(F.hasLoans==='Yes'){
+    for(var i=0;i<F.loans.length;i++){ cards += loanCard(F.loans[i], i); }
+    cards += '<button class="addbtn" onclick="addLoan()">+ Add Another Commitment</button>';
+  }
+  return sec('Loans and Credit Commitments')
+    + radio('Do you have any outstanding loans, credit cards, or finance agreements?','hasLoans',['Yes','No'],true)
+    + cards;
+}
+
+function s5(){
+  var rmDet = '';
+  if(F.hasResMort==='Yes'){
+    rmDet = g2(inp('Lender','rmLender'), inp('Account Number','rmAcc'))
+      + g2(inp('Current Property Value','rmVal','number',false,'0'), inp('Amount Outstanding','rmOwed','number',false,'0'))
+      + g2(inp('Monthly Payment','rmPay','number',false,'0'), inp('Term Remaining (years)','rmTerm','number',false,'0'))
+      + inp('Current Interest Rate','rmRate','text',false,'e.g. 4.5% fixed until Dec 2026');
+  }
+  var omDet = '';
+  if(F.hasOtherMort==='Yes'){
+    omDet = g2(inp('Lender','omLender'), inp('Account Number','omAcc'))
+      + inp('Address of Property','omAddr')
+      + g2(inp('Current Value','omVal','number',false,'0'), inp('Monthly Rental Income','omRent','number',false,'0'))
+      + g2(sel('Ownership','omOwn',['Sole','Joint']), inp('Amount Outstanding','omOwed','number',false,'0'))
+      + g2(inp('Monthly Payment','omPay','number',false,'0'), inp('Term Remaining','omTerm'))
+      + g2(sel('Repayment Method','omRepay',['Capital and Interest','Interest Only']), inp('Current Rate','omRate'));
+  }
+  return sec('Current Residential Mortgage')
+    + radio('Do you currently have a residential mortgage?','hasResMort',['Yes','No'],true)
+    + rmDet
+    + sec('Other Properties and Buy-to-Let')
+    + radio('Do you have any other mortgaged properties or buy-to-let?','hasOtherMort',['Yes','No'],true)
+    + omDet;
+}
+
+function s6(){
+  var det = '';
+  if(F.foundProp==='Yes'){
+    var flatDet = F.pType==='Flat'
+      ? g2(inp('Floor Number','pFloor','number',false,'0'), inp('Total Floors in Block','pFloors','number',false,'0'))
+      : '';
+    var leaseDet = F.pTenure==='Leasehold'
+      ? sec('Leasehold Details')
+        + g2(inp('Leasehold Term Remaining (years)','lTerm','number'), inp('Service Charge per year','sSvc','number',false,'0'))
+        + inp('Ground Rent per year','sGrd','number',false,'0')
+      : '';
+    det = sec('Property Details')
+      + inp('Address of Property','pAddr','text',true,'Full address including postcode')
+      + g2(inp('Purchase Price','pPrice','number',true,'0'), inp('Deposit','pDep','number',true,'0'))
+      + inp('Mortgage Required (leave blank to auto-calculate)','pMort','number')
+      + g2(sel('Type of Property','pType',['House','Flat','Bungalow','Maisonette','New Build','Other'],true), sel('Tenure','pTenure',['Freehold','Leasehold','Share of Freehold'],true))
+      + flatDet + leaseDet
+      + sec('Professionals Involved')
+      + ta('Selling Agent','agent','Full name, address, and telephone number')
+      + ta('Solicitor','sol','Full name, address, and telephone number')
+      + inp('Bank Details for Mortgage Repayments','bank','text',false,'Name on account, sort code, account number');
+  } else if(F.foundProp==='No - still searching'){
+    det = info('No problem - we can begin structuring your application based on your budget and income profile. Our team will be in touch once you have found a property.');
+  }
+  return sec('Property Search')
+    + radio('Have you found a property you would like to purchase?','foundProp',['Yes','No - still searching'],true)
+    + det;
+}
+
+function rvRow(k,v){ if(!v) return ''; return '<div class="rv-row"><span class="rv-k">'+k+'</span><span class="rv-v">'+v+'</span></div>'; }
+function rvSec(title, rows){
+  var content = rows.join('');
+  if(!content) return '';
+  return '<div class="rv-sec"><div class="rv-hd">'+title+'</div><div class="rv-body">'+content+'</div></div>';
+}
+
+function s7(){
+  var empRows = [];
+  if(F.emp==='Employed'){
+    empRows = [rvRow('Employer',F.empName), rvRow('Job Title',F.jobTitle), rvRow('Basic Salary',gbp(F.salary)), rvRow('Commission',gbp(F.comm)), rvRow('Bonus (Latest)',gbp(F.bon1)), rvRow('Bonus (Previous)',gbp(F.bon2)), rvRow('Period of Employment',F.empPeriod)];
+  } else if(F.emp==='Self-Employed'){
+    empRows = [rvRow('Business Type',F.bizType), rvRow('Net Profit (Latest)',gbp(F.prof1)), rvRow('Net Profit (Previous)',gbp(F.prof2))];
+  } else if(F.emp==='Company Director'){
+    empRows = [rvRow('Company',F.coName), rvRow('Shareholding',F.share?F.share+'%':''), rvRow('Salary',gbp(F.dirSal)), rvRow('Dividends (Latest)',gbp(F.div1)), rvRow('Dividends (Previous)',gbp(F.div2))];
+  } else if(F.emp==='Contractor'){
+    empRows = [rvRow('Day Rate',gbp(F.dayRate)), rvRow('Contract Length',F.conLen), rvRow('Industry',F.industry), rvRow('Years Contracting',F.yrsContracting)];
+  } else if(F.emp==='Retired'){
+    empRows = [rvRow('Annual Pension',gbp(F.salary)), rvRow('Other Income',F.acct)];
+  }
+
+  var propRows = [rvRow('Property Found',F.foundProp)];
+  if(F.foundProp==='Yes'){
+    var calcMort = '';
+    if(F.pMort){ calcMort = gbp(F.pMort); }
+    else if(F.pPrice && F.pDep){ calcMort = gbp(String(Number(F.pPrice)-Number(F.pDep))); }
+    propRows.push(rvRow('Address',F.pAddr));
+    propRows.push(rvRow('Purchase Price',gbp(F.pPrice)));
+    propRows.push(rvRow('Deposit',gbp(F.pDep)));
+    propRows.push(rvRow('Mortgage Required',calcMort));
+    propRows.push(rvRow('Property Type',F.pType));
+    propRows.push(rvRow('Tenure',F.pTenure));
+  }
+
+  var fullName = [F.title,F.first,F.mid,F.last].filter(Boolean).join(' ');
+  var loanSummary = F.hasLoans==='Yes' ? F.loans.length + ' listed' : 'None declared';
+
+  return '<p style="font-size:14px;color:var(--muted);margin-bottom:22px">Please review your information before submitting. Our team will be in touch within 1 business day.</p>'
+    + rvSec('Personal Details',[
+        rvRow('Full Name',fullName), rvRow('Date of Birth',F.dob),
+        rvRow('Nationality',F.nation), rvRow('Visa Status',F.visa),
+        rvRow('Marital Status',F.marital), rvRow('NI Number',F.ni),
+        rvRow('Dependants',F.deps), rvRow('Address',F.addr+' '+F.post),
+        rvRow('Residential Status',F.resStatus), rvRow('Mobile',F.mobile), rvRow('Email',F.email)
+      ])
+    + rvSec('Employment and Income',[rvRow('Status',F.emp)].concat(empRows))
+    + rvSec('Deposit and Funds',[
+        rvRow('Deposit',gbp(F.deposit)), rvRow('Property Budget',gbp(F.budget)),
+        rvRow('Cash',gbp(F.cashDep)), rvRow('Stocks and Shares',gbp(F.stocksDep)),
+        rvRow('Gift',gbp(F.giftDep)), rvRow('Equity',gbp(F.eqDep)),
+        rvRow('Foreign Deposit',F.foreignDep)
+      ])
+    + rvSec('Commitments and Properties',[
+        rvRow('Credit Commitments',loanSummary),
+        rvRow('Current Mortgage',F.hasResMort),
+        rvRow('Other Properties',F.hasOtherMort)
+      ])
+    + rvSec('New Property',propRows)
+    + '<div class="privacy">By submitting this form you consent to Expat Capital Partners using your information to assess your mortgage options. Your data is processed in accordance with applicable data protection legislation. Expat Capital Partners is a trading style of Prescient Partners LLP, an Appointed Representative of Stonebridge Mortgage Solutions Ltd, authorised and regulated by the Financial Conduct Authority (FCA reference 1035254).</div>';
+}
+
+var titles = ['Personal Details','Employment and Income','Deposit and Funds','Current Commitments','Existing Properties','New Property','Review and Submit'];
+var subs   = ['Tell us about yourself','How do you earn your income?','Your deposit and source of funds','Outstanding loans and credit commitments','Properties you currently own','Details about your target property','Check everything and submit'];
+var renderers = [s1,s2,s3,s4,s5,s6,s7];
+
+function render(){
+  document.getElementById('main').innerHTML =
+    '<h1 class="stitle">'+titles[step-1]+'</h1>'
+    +'<p class="ssub">'+subs[step-1]+'</p>'
+    + renderers[step-1]();
+
+  var track = document.getElementById('ptrack');
+  var segs = '';
+  for(var i=0;i<TOTAL;i++){ segs += '<div class="prog-seg'+(i<step?' on':'')+'"></div>'; }
+  track.innerHTML = segs;
+  document.getElementById('pstep').textContent = 'Step '+step+' of '+TOTAL;
+  document.getElementById('ppct').textContent = Math.round(step/TOTAL*100)+'% complete';
+
+  document.getElementById('bbk').style.visibility = step===1 ? 'hidden' : 'visible';
+  var bfw = document.getElementById('bfw');
+  if(step===TOTAL){
+    bfw.textContent = 'Submit Application';
+    bfw.className = 'bsb';
+    bfw.onclick = submitForm;
+  } else {
+    bfw.textContent = 'Continue';
+    bfw.className = 'bfw';
+    bfw.onclick = function(){ go(1); };
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function go(dir){
+  step = Math.max(1, Math.min(TOTAL, step+dir));
+  render();
+}
+
+function submitForm(){
+  document.getElementById('pwrap').style.display='none';
+  document.getElementById('nav').style.display='none';
+  var ref = 'ECP-' + String(Date.now()).slice(-8);
+  document.getElementById('main').innerHTML =
+    '<div class="suc-wrap"><div class="suc-card">'
+    +'<div class="suc-icon">&#10003;</div>'
+    +'<img src="https://expatcapitalpartners.com/wp-content/uploads/2026/04/ECP-09-scaled.png" alt="ECP" style="height:36px;margin:0 auto 20px;display:block" onerror="this.style.display=\'none\'">'
+    +'<h2 class="suc-h">Application Received</h2>'
+    +'<p class="suc-p">Thank you for submitting your financial overview. A member of the Expat Capital Partners team will review your details and be in touch within <strong>1 business day</strong>.</p>'
+    +'<div class="ref-card"><div class="ref-label">Your reference number</div><div class="ref-num">'+ref+'</div></div>'
+    +'<p class="suc-links">Call us on <a href="tel:02039254913">0203 925 4913</a><br>or email <a href="mailto:info@expatcapitalpartners.com">info@expatcapitalpartners.com</a></p>'
+    +'</div></div>';
+
+  // EMAIL INTEGRATION: load @emailjs/browser then call:
+  // emailjs.send("SERVICE_ID","TEMPLATE_ID",{ref:ref,name:F.first+" "+F.last},"PUBLIC_KEY")
+}
+
+render();
+</script>
+</body>
+</html>
